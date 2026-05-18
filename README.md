@@ -89,6 +89,11 @@ The terminal will confirm:
 =============================================================
 ```
 
+### Option C: Use the Live Production API (Instant & Ready)
+If you prefer not to run anything locally, the API is fully deployed in the cloud and active:
+* **Live GraphQL Playground:** [https://saarang-devops-2.onrender.com/](https://saarang-devops-2.onrender.com/)
+* **Live Health Endpoint:** [https://saarang-devops-2.onrender.com/health](https://saarang-devops-2.onrender.com/health)
+
 ---
 
 ## GraphQL API Documentation & Testing Examples
@@ -115,9 +120,24 @@ mutation RegisterUser {
 ### 2. User Login (Mutation)
 Authenticates a user and returns a JWT token. Copy the **token** string from the response to authorize subsequent mutations.
 
+**Testing with Seeded Customer account:**
 ```graphql
-mutation LoginUser {
-  login(username: "john_doe", password: "userpassword") {
+mutation LoginAsCristiano {
+  login(username: "Cristiano", password: "Ronaldosiu") {
+    token
+    user {
+      id
+      username
+      role
+    }
+  }
+}
+```
+
+**Testing with Seeded Administrator account:**
+```graphql
+mutation LoginAsShahid {
+  login(username: "Shahid", password: "saarang123") {
     token
     user {
       id
@@ -171,7 +191,7 @@ query GetProductDetail {
 ---
 
 ### 4. Admin Product Management (Mutations - Requires Admin Token)
-*Use the token returned from registering/logging in with the administrator account (`admin` / `adminpassword` or an account registered with `isAdmin: true`).*
+*Use the token returned from registering/logging in with the administrator account (`Shahid` / `saarang123` or an account registered with `isAdmin: true`).*
 
 #### Create a Product
 ```graphql
