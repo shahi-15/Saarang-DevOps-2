@@ -1,0 +1,15 @@
+# Dependency directories
+node_modules/
+
+# Local environment files (contains secure Supabase passwords!)
+.env
+
+# OS cache files
+.DS_Store
+Thumbs.db
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
