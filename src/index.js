@@ -24,6 +24,7 @@ async function startServer() {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    introspection: true, // Explicitly enable schema introspection in production/Render!
     plugins: [
       // Proper graceful shutdown plugin for the HTTP server
       ApolloServerPluginDrainHttpServer({ httpServer }),
