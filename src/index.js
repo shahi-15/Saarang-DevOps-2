@@ -1,6 +1,7 @@
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import express from 'express';
 import http from 'http';
 import cors from 'cors';
@@ -25,7 +26,9 @@ async function startServer() {
     resolvers,
     plugins: [
       // Proper graceful shutdown plugin for the HTTP server
-      ApolloServerPluginDrainHttpServer({ httpServer })
+      ApolloServerPluginDrainHttpServer({ httpServer }),
+      // Explicitly enable embedded Sandbox GraphQL Playground even in production/Render!
+      ApolloServerPluginLandingPageLocalDefault({ embed: true })
     ],
     // Clean, robust formatting for error outputs in sandbox
     formatError: (formattedError, error) => {
