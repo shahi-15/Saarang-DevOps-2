@@ -56,6 +56,11 @@ async function startServer() {
     })
   );
 
+  // Redirect root to /graphql for easy Apollo Playground access
+  app.get('/', (req, res) => {
+    res.redirect('/graphql');
+  });
+
   // Health check endpoint
   app.get('/health', (req, res) => {
     res.status(200).json({ status: 'ok', timestamp: new Date() });
